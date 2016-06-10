@@ -15,15 +15,7 @@ Comments.register(function(app, auth, database, circles) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Comments.routes(app, auth, database, circles);
-
-  //We are adding a link to the main menu for all authenticated users
-  Comments.menus.add({
-    title: 'comments example page',
-    link: 'comments example page',
-    roles: ['authenticated'],
-    menu: 'main'
-  });
-
+  
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
