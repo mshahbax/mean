@@ -17,10 +17,6 @@
       next();
     };
 
-    app.get('/api/articles/example/anyone', function (req, res) {
-      res.send('Anyone can access this');
-    });
-
     app.get('/api/articles/get/:articleId', articles.getArticle);
 
     app.get('/api/articles/all', hasAuthorization, articles.all);

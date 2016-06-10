@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
   Comment = mongoose.model('Comment'),
   _ = require('lodash');
 
@@ -33,29 +32,12 @@ module.exports = function(Articles) {
       });
     },
     /**
-     * Delete a comment
-     */
-    destroy: function(req, res) {
-      var comment = req.comment;
-
-
-      comment.remove(function(err) {
-        if (err) {
-          return res.status(500).json({
-            error: 'Cannot delete the comment'
-          });
-        }
-
-        res.json(comment);
-      });
-    },
-    /**
      * List of Comments
      */
     all: function(req, res) {
 
-      Comment.find({article: req.params.articleId}).sort('created')
-        .populate('article', 'title').sort('-created').populate('user', 'name username').exec(function(err, comments) {
+      Comment.find({article: req.params.articleId}).sort('-created')
+        .populate('article', 'title').populate('user', 'name username').exec(function(err, comments) {
         if (err) {
           return res.status(500).json({
             error: 'Cannot list the comments'
