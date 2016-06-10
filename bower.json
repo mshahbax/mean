@@ -7,11 +7,15 @@
     "angular-cookies": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
-    "bootstrap": "latest",
+    "bootstrap": "^3.3.6",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest",
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
     "angular-ui-select": "latest",
-    "angular-sanitize": "latest"
+    "angular-sanitize": "latest",
+    "angular-messages": "^1.5.7"
+  },
+  "resolutions": {
+    "angular": "1.5.7-build.4866+sha.e986565"
   }
 }
