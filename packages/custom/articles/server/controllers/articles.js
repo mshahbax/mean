@@ -25,7 +25,9 @@ module.exports = function(Articles) {
      * Create an article
      */
     create: function(req, res) {
-      var article = new Article(req.body);
+      var article = new Article();
+      article.title = req.body.title;
+      article.content = req.body.content;
       article.user = req.user;
 
       article.save(function(err) {
@@ -101,9 +103,8 @@ module.exports = function(Articles) {
      * List of Articles
      */
     all: function(req, res) {
-      var query = req.acl.query('Article');
 
-      query.find({}).sort('-created').populate('user', 'name username').exec(function(err, articles) {
+      Article.find().sort('created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
           return res.status(500).json({
             error: 'Cannot list the articles'
@@ -111,6 +112,20 @@ module.exports = function(Articles) {
         }
 
         res.json(articles)
+      });
+
+    },
+
+    getArticle: function (req, res) {
+
+      Article.findOne({_id: req.params.articleId}).exec(function(err, article) {
+        if(err) {
+          return res.status(500).json({
+            error: 'Cannot list the articles'
+          });
+        }
+
+        res.json(article);
       });
 
     }

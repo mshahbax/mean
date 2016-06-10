@@ -5,9 +5,12 @@
         $stateProvider.state('create-post', {
             url: '/articles/create',
             templateUrl: 'articles/views/create.html'
-        }).state('articles circles example', {
-            url: '/articles/example/:circle',
-            templateUrl: 'articles/views/example.html'
+        }).state('posts', {
+            url: '/articles',
+            templateUrl: 'articles/views/posts.html'
+        }).state('post', {
+          url: '/articles/post/:id',
+          templateUrl: 'articles/views/post.html'
         });
     }
 

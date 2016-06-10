@@ -26,6 +26,28 @@
         return deferred.promise;
 
       },
+      allPosts: function () {
+        var deferred = $q.defer();
+
+        $http.get('/api/articles/all/').success(function (response) {
+          deferred.resolve(response);
+        }).error(function (response) {
+          deferred.reject(response);
+        });
+        return deferred.promise;
+
+      },
+      getPost: function (post) {
+        var deferred = $q.defer();
+
+        $http.get('/api/articles/get/' + post).success(function (response) {
+          deferred.resolve(response);
+        }).error(function (response) {
+          deferred.reject(response);
+        });
+        return deferred.promise;
+
+      }
     };
   }
 

@@ -12,6 +12,7 @@
       title: null,
       content: null,
     };
+    $scope.posts = [];
 
     $scope.checkCircle = function () {
       Articles.checkCircle($stateParams.circle).then(function (response) {
@@ -30,6 +31,32 @@
         $scope.resStatus = 'info';
         post.title = null;
         post.content = null;
+      }, function (error) {
+        $scope.res = error;
+        $scope.resStatus = 'danger';
+      });
+
+    };
+
+    $scope.allPosts = function () {
+
+      Articles.allPosts().then(function (response) {
+        $scope.res = response;
+        $scope.resStatus = 'info';
+        $scope.posts = response;
+      }, function (error) {
+        $scope.res = error;
+        $scope.resStatus = 'danger';
+      });
+
+    };
+
+    $scope.getPost = function () {
+      
+      Articles.getPost($stateParams.id).then(function (response) {
+        $scope.res = response;
+        $scope.resStatus = 'info';
+        $scope.post = response;
       }, function (error) {
         $scope.res = error;
         $scope.resStatus = 'danger';

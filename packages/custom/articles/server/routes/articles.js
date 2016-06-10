@@ -21,22 +21,9 @@
       res.send('Anyone can access this');
     });
 
-    app.get('/api/articles/example/auth', requiresLogin, function (req, res) {
-      res.send('Only authenticated users can access this');
-    });
+    app.get('/api/articles/get/:articleId', articles.getArticle);
 
-    app.get('/api/articles/example/admin', requiresAdmin, function (req, res) {
-      res.send('Only users with Admin role can access this');
-    });
-
-    app.get('/api/articles/example/render', function (req, res) {
-      Articles.render('index', {
-        package: 'articles'
-      }, function (err, html) {
-        //Rendering a view from the Package server/views
-        res.send(html);
-      });
-    });
+    app.get('/api/articles/all', hasAuthorization, articles.all);
 
     app.post('/api/articles/create', hasAuthorization,  articles.create);
 
