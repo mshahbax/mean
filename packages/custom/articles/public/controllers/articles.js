@@ -52,7 +52,7 @@
     };
 
     $scope.getPost = function () {
-      
+
       Articles.getPost($stateParams.id).then(function (response) {
         $scope.res = response;
         $scope.resStatus = 'info';
